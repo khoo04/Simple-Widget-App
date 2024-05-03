@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Item 1",
+      "completeStatus": true
+    },
+    {
+      "name": "Item 2",
+      "completeStatus": false
+    },
+    {
+      "name": "Item 3",
+      "completeStatus": true
+    },
+    {
+        "name": "Item 4",
+        "completeStatus": false
+    },
+    {
+        "name": "Item 5",
+        "completeStatus": false
+    },
+    {
+        "name": "Item 6",
+        "completeStatus": false
+    }
+]
+  
