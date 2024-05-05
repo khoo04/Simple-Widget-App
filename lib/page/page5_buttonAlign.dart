@@ -14,49 +14,61 @@ class _ButtonAlignmentPageState extends State<ButtonAlignmentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 200,
-            width: double.infinity,
-            margin: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(color: Colors.lightBlue),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: SquareButton(text: 'Button1')),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: SquareButton(text: 'Button1')),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: SquareButton(text: 'Button1')),
-                    ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(color: Colors.lightBlue),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: SquareButton(text: 'Button1')),
+                        Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: SquareButton(text: 'Button1')),
+                        Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: SquareButton(text: 'Button1')),
+                      ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: SquareButton(text: 'Button1')),
-                      Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
-                          child: SquareButton(text: 'Button1')),
-                    ],
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: SquareButton(text: 'Button1')),
+                        Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            child: SquareButton(text: 'Button1')),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 1000,
+              width: double.infinity,
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(color: Colors.green),
+              child: Text("Testing"),
+            )
+          ],
+        ),
       ),
       //Fixed Button
       floatingActionButton: Container(

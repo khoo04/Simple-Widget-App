@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_widget_app/model/item.dart';
 import 'package:simple_widget_app/widget/todolistTile.dart';
 
@@ -28,22 +28,33 @@ class ToDoListPageState extends State<ToDoListPage> {
   FilterOptions selectedFilter = FilterOptions.all;
 
   Future<void> getItemList() async {
-    String jsonString = await rootBundle.loadString('lib/assets/item.json');
-    List json = jsonDecode(jsonString) as List<dynamic>;
-    List<Item> itemList = json.map((e) => Item.fromJson(e)).toList();
-    items = itemList;
+    final prefs = await SharedPreferences.getInstance();
+    final itemJson = prefs.getString("items");
+    if (itemJson == null) {
+      String jsonString = await rootBundle.loadString('lib/assets/item.json');
+      List json = jsonDecode(jsonString) as List<dynamic>;
+      List<Item> itemList = json.map((e) => Item.fromJson(e)).toList();
+      items = itemList;
+    } else {
+      List itemList = json.decode(itemJson) as List<dynamic>;
+      items = itemList.map((e) => Item.fromJson(e)).toList();
+    }
+
     //await Future.delayed(Duration(seconds: 10)); //For testing circular progress indicator
     setState(() {}); //Refresh the page when the items is loaded
   }
 
-  void updateStatus(String name, bool completeStatus) {
+  void updateStatus(String name, bool completeStatus) async {
     items = items!.map((item) {
       if (item.name == name) {
         return Item(name: item.name, completeStatus: completeStatus);
       }
       return item;
     }).toList();
-
+    final prefs = await SharedPreferences.getInstance();
+    List itemMap = items!.map((e) => e.toJson()).toList();
+    String jsonString = json.encode(itemMap);
+    prefs.setString("items", jsonString);
     setState(() {});
   }
 
