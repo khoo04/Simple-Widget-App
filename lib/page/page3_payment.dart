@@ -11,6 +11,7 @@ class AmountPage extends StatefulWidget {
 
 class _AmountPageState extends State<AmountPage> {
   TextEditingController amountController = TextEditingController();
+
   void textFormat(String? value) async {
     await Future.delayed(Duration(milliseconds: 1));
     if (value == null || value == "") {
@@ -22,7 +23,9 @@ class _AmountPageState extends State<AmountPage> {
     //complete the following function, the format must be "RM x.xx", for example "RM 123.34"
     //the new value should push to the current value (can refer tng ewallet)
     // u can use keyboardType: TextInputType.number, to restrict the user input
+
     String extractedNumber = value.replaceAll(RegExp('[^0-9]'), '');
+
     if (extractedNumber.length >= 2) {
       //If number length is have more than 2 places, add the '.'
       extractedNumber =
@@ -30,9 +33,8 @@ class _AmountPageState extends State<AmountPage> {
     } else {
       extractedNumber = "0.${extractedNumber.padLeft(2, '0')}";
     }
-
     //Replace 0 for start of line
-    extractedNumber = extractedNumber.replaceFirst(RegExp('^0'), '');
+    extractedNumber = extractedNumber.replaceFirst(RegExp('0'), '');
 
     //If the number string start with . , add 0 in front
     if (extractedNumber.startsWith(".")) {

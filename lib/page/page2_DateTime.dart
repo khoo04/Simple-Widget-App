@@ -40,6 +40,22 @@ class _DateTimePageState extends State<DateTimePage> {
     return time;
   }
 
+  Future<DateTimeRange> getTimeRange() async {
+    final timeRange = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2040),
+      initialDateRange: DateTimeRange(
+        start: DateTime.now(),
+        end: DateTime.now().add(const Duration(days: 7)),
+      ),
+    );
+    if (timeRange == null) {
+      return DateTimeRange(start: DateTime.now(), end: DateTime.now());
+    }
+    return timeRange;
+  }
+
   String dateFormat(DateTime date) {
     String month =
         date.month.toString().padLeft(2, '0'); // Ensure two digits for month
@@ -418,6 +434,19 @@ class _DateTimePageState extends State<DateTimePage> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 50,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                getTimeRange().then((value) {
+                  final String range =
+                      "${dateFormat(value.start)} - ${dateFormat(value.end)}";
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(range)));
+                });
+              },
+              child: const Text("Show Time Range Picker"))
         ],
       ),
     );

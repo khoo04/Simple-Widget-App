@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_widget_app/page/page10.datatable.dart';
+import 'package:simple_widget_app/page/page11_switch_mode.dart';
 import 'package:simple_widget_app/page/page1_TNC.dart';
 import 'package:simple_widget_app/page/page2_DateTime.dart';
 import 'package:simple_widget_app/page/page3_payment.dart';
 import 'package:simple_widget_app/page/page4_todolist.dart';
 import 'package:simple_widget_app/page/page5_buttonAlign.dart';
+import 'package:simple_widget_app/page/page6_tab_bar.dart';
+import 'package:simple_widget_app/page/page7_bottom_sheet.dart';
+import 'package:simple_widget_app/page/page8_expansion.dart';
+import 'package:simple_widget_app/page/page9_slideable.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -41,6 +47,7 @@ class _MainPageState extends State<MainPage> {
     storage.setBool("tnc_status", status);
     setState(() {
       acceptStatus = status;
+      content = _buildHomePage(context);
     });
   }
 
@@ -124,6 +131,66 @@ class _MainPageState extends State<MainPage> {
                 setState(() {
                   content = const ButtonAlignmentPage();
                   title = "Button Alignment";
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('Tab Bar Example'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  content = const TabBarPage();
+                  title = "Tab Bar Example";
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('Modal Bottom Sheet Example'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  content = const BottomSheetPage();
+                  title = "Bottom Sheet Example";
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('Expansion Tile Example'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  content = const ExpansionTilePage();
+                  title = "Expansion Tile Example";
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('Slideable List Tile Example'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  content = const SlideableExamplePage();
+                  title = "Slideable Example";
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('DataTable Example'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  content = const DataTableExample();
+                  title = "Data Table Example";
+                });
+              },
+            ),
+            ListTile(
+              title: const Text('Switch Theme Example'),
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  content = const SwitchModePage();
+                  title = "Switch Theme Example";
                 });
               },
             ),
